@@ -128,12 +128,12 @@ export default function LanguageExchangePage() {
     // Mock response from partner after a short delay
     setTimeout(() => {
       const partnerResponses = [
-        "Salut ! Je viens de [ton pays]",
-        "J'ai toujours été fasciné par la culture",
-        "Mon mot préféré jusqu'à présent est 'bonjour' parce que c'est le premier que j'ai appris !",
-        "Pas encore, mais j'aimerais essayer un jour",
-        "Je pense que c'est amusant d'apprendre de nouveaux mots et d'essayer de les utiliser dans des phrases !",
-        "J'essaie de me fixer de petits objectifs et de célébrer quand je les atteins",
+        "Salut ! Oui carrément, j’essaye de pratiquer tous les jours en ce moment.",
+        "Oh, moi depuis trois semaines. Je galère un peu avec la grammaire haha.",
+        "Ah oui je vois ! Mais quand t’arrives à dire une phrase correcte, t’es trop fier.",
+        "Bonne idée ! Moi je suis plus en mode podcast, j’écoute pendant que je cuisine.",
+        "Ouais ! J’adore le mot 'fromage' — je sais pas pourquoi, il est rigolo à dire.",
+        "Grave ! Ça motive beaucoup plus. On se recontacte la semaine prochaine ?",
       ];
 
       const sequentialResponse =
