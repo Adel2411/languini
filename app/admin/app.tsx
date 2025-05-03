@@ -19,7 +19,7 @@ import { UnitCreate } from "./unit/create";
 import { UnitEdit } from "./unit/edit";
 import { UnitList } from "./unit/list";
 
-const dataProvider = simpleRestProvider("/api") as any;
+const dataProvider = simpleRestProvider("/api");
 
 const App = () => {
   return (
