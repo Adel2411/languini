@@ -47,5 +47,5 @@ export const siteConfig: Metadata = {
 
 export const links = {
   sourceCode: "https://github.com/Adel2411/Languini",
-  email: "hadjrabadel.2411@gmail.com",
+  email: "hadjarabadel.2411@gmail.com",
 } as const;
