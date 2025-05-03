@@ -162,71 +162,53 @@ export default function LanguageExchangePage() {
 
   // Set up camera when connected
   useEffect(() => {
-    /* Original stream code commented out for demo */
+    let stream: MediaStream | null = null;
 
     if (exchangeState === "connected") {
-      // For local video, use the actual camera and mic
       navigator.mediaDevices
         .getUserMedia({ video: true, audio: true })
         .then((mediaStream) => {
+          stream = mediaStream;
           if (localVideoRef.current) {
             localVideoRef.current.srcObject = mediaStream;
           }
+
+          // In a real implementation, this would be connected to WebRTC
+          // For demo, we'll just mirror the stream to simulate a connection
+          setTimeout(() => {
+            if (remoteVideoRef.current) {
+              // In a real app, this would be the partner's stream
+              // For demo, we create a placeholder stream
+              const canvas = document.createElement("canvas");
+              canvas.width = 640;
+              canvas.height = 480;
+              const ctx = canvas.getContext("2d");
+              if (ctx) {
+                ctx.fillStyle = "#1f2937";
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+                // Add text indicating this is a mock
+                ctx.font = "24px sans-serif";
+                ctx.fillStyle = "white";
+                ctx.fillText("Partner Video Placeholder", 180, 240);
+              }
+
+              // Create a stream from the canvas
+              const placeholderStream = canvas.captureStream(30);
+              remoteVideoRef.current.srcObject = placeholderStream;
+            }
+          }, 1000);
         })
         .catch((err) => {
           console.error("Error accessing camera:", err);
-          // Fallback to placeholder if camera access fails
-          setupImagePlaceholder(
-            localVideoRef,
-            "Your Video (Camera access failed)"
-          );
+          // Handle error - show message to user
         });
-
-      // For remote video, use image placeholder
-      const setupImagePlaceholder = (
-        videoRef: React.RefObject<HTMLVideoElement>,
-        label: string
-      ) => {
-        if (videoRef.current) {
-          const canvas = document.createElement("canvas");
-          canvas.width = 640;
-          canvas.height = 480;
-          const ctx = canvas.getContext("2d");
-
-          if (ctx) {
-            // Create an image element and draw it on the canvas
-            const img = new window.Image();
-            img.onload = () => {
-              // Draw the image to fill the canvas
-              ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-
-              // Add label text if needed
-              ctx.font = "24px sans-serif";
-              ctx.fillStyle = "white";
-              ctx.fillText(label, canvas.width / 2 - 100, canvas.height - 30);
-
-              // Create a stream from the canvas
-              const placeholderStream = canvas.captureStream(1);
-              videoRef.current!.srcObject = placeholderStream;
-            };
-
-            // Set the image source - assuming it's in the public directory
-            img.src = "/moh-call.png";
-          }
-        }
-      };
-
-      // Setup placeholder for remote video only
-      setupImagePlaceholder(remoteVideoRef, "Partner Video");
     }
 
-    // Cleanup function
+    // Cleanup media stream when component unmounts or state changes
     return () => {
-      if (localVideoRef.current && localVideoRef.current.srcObject) {
-        const tracks = (
-          localVideoRef.current.srcObject as MediaStream
-        ).getTracks();
-        tracks.forEach((track) => track.stop());
+      if (stream) {
+        stream.getTracks().forEach((track) => track.stop());
       }
     };
   }, [exchangeState]);
