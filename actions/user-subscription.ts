@@ -40,7 +40,7 @@ export const createStripeUrl = async () => {
             name: "Languini Pro",
             description: "Unlimited hearts.",
           },
-          unit_amount: 2000, // $20.00 USD
+          unit_amount: 799, // $7.99 USD
           recurring: {
             interval: "month",
           },
