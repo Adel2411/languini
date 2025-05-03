@@ -61,21 +61,21 @@ const testimonials = [
   {
     name: "Alex P.",
     role: "Software Developer",
-    image: "https://api.dicebear.com/7.x/personas/svg?seed=Alex",
+    image: "man.svg",
     text: "Languini helped me learn Spanish for my trip to Mexico. The bite-sized lessons made it easy to practice daily.",
     rating: 5,
   },
   {
     name: "Sarah M.",
     role: "Student",
-    image: "https://api.dicebear.com/7.x/personas/svg?seed=Sarah",
+    image: "woman.svg",
     text: "I've tried many language apps, but Languini's approach just clicked for me. I'm now conversational in French!",
     rating: 5,
   },
   {
     name: "David K.",
     role: "Business Professional",
-    image: "https://api.dicebear.com/7.x/personas/svg?seed=David",
+    image: "man.svg",
     text: "Learning Japanese seemed daunting until I found Languini. The interactive exercises make it fun and effective.",
     rating: 4,
   },
@@ -409,8 +409,11 @@ export default function MarketingPage() {
                       size="lg"
                       variant={"primary"}
                       className="border-white text-white hover:bg-green-500"
+                      asChild
                     >
-                      <Play className="mr-2 h-4 w-4" /> See how it works
+                      <Link href="https://www.loom.com/share/c5322f7026104bdcb649fe4199f4a8ac?sid=3e1c7c7e-013d-4e83-9ff1-79c99975b10f">
+                        <Play className="mr-2 h-4 w-4" /> See how it works
+                      </Link>
                     </Button>
                   </SignedOut>
 
