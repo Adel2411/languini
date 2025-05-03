@@ -18,12 +18,11 @@ const main = async () => {
       db.delete(schema.userSubscription),
     ]);
 
-    // Define courses
+    // Define courses - removed English
     const courses = await db
       .insert(schema.courses)
       .values([
         { title: "Spanish", imageSrc: "/es.svg" },
-        { title: "English", imageSrc: "/en.svg" },
         { title: "French", imageSrc: "/fr.svg" },
         { title: "Croatian", imageSrc: "/hr.svg" },
         { title: "Japanese", imageSrc: "/jp.svg" },
@@ -121,15 +120,13 @@ const main = async () => {
             const langPrefix =
               course.title === "Spanish"
                 ? "es"
-                : course.title === "English"
-                  ? "en"
-                  : course.title === "French"
-                    ? "fr"
-                    : course.title === "Croatian"
-                      ? "hr"
-                      : course.title === "Japanese"
-                        ? "jp"
-                        : "it";
+                : course.title === "French"
+                  ? "fr"
+                  : course.title === "Croatian"
+                    ? "hr"
+                    : course.title === "Japanese"
+                      ? "jp"
+                      : "it";
 
             const getText = (
               word: "man" | "woman" | "boy" | "zombie" | "robot" | "girl"
@@ -137,7 +134,6 @@ const main = async () => {
               const translations = {
                 man: {
                   es: "el hombre",
-                  en: "the man",
                   fr: "l'homme",
                   hr: "čovjek",
                   jp: "男",
@@ -145,7 +141,6 @@ const main = async () => {
                 },
                 woman: {
                   es: "la mujer",
-                  en: "the woman",
                   fr: "la femme",
                   hr: "žena",
                   jp: "女",
@@ -153,7 +148,6 @@ const main = async () => {
                 },
                 boy: {
                   es: "el chico",
-                  en: "the boy",
                   fr: "le garçon",
                   hr: "dječak",
                   jp: "男の子",
@@ -161,7 +155,6 @@ const main = async () => {
                 },
                 zombie: {
                   es: "el zombie",
-                  en: "the zombie",
                   fr: "le zombie",
                   hr: "zombi",
                   jp: "ゾンビ",
@@ -169,7 +162,6 @@ const main = async () => {
                 },
                 robot: {
                   es: "el robot",
-                  en: "the robot",
                   fr: "le robot",
                   hr: "robot",
                   jp: "ロボット",
@@ -177,7 +169,6 @@ const main = async () => {
                 },
                 girl: {
                   es: "la niña",
-                  en: "the girl",
                   fr: "la fille",
                   hr: "djevojka",
                   jp: "女の子",

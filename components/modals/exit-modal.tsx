@@ -50,7 +50,7 @@ export const ExitModal = () => {
         <DialogFooter className="mb-4">
           <div className="flex w-full flex-col gap-y-4">
             <Button
-              variant="primary"
+              variant="secondary"
               className="w-full"
               size="lg"
               onClick={close}
